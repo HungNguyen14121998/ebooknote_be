@@ -12,7 +12,7 @@ exports.createHistory = catchAsync(async (req, res, next) => {
     return next(new AppError("There is no book with book name.", 404));
   }
 
-  const newHistory = History.create({
+  const newHistory = await History.create({
     user: req.user._id,
     book: book._id,
     content: req.body.content,

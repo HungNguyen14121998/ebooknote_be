@@ -38,7 +38,7 @@ exports.register = catchAsync(async (req, res, next) => {
     return next(new AppError("Username is exist", 401));
   }
 
-  const newUser = User.create({
+  const newUser = await User.create({
     username,
     password,
   });

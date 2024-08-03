@@ -61,13 +61,14 @@ exports.updateImageToBook = catchAsync(async (req, res, next) => {
 });
 
 exports.createBook = catchAsync(async (req, res, next) => {
-  const book = Book.findOne({ name: req.body.name });
+  const bookName = req.body.name;
+  const book = await Book.findOne({ name: bookName, user: req.user._id });
 
-  if (book != nil) {
+  if (book) {
     return next(new AppError("Book is exist", 401));
   }
 
-  const newBook = Book.create({
+  const newBook = await Book.create({
     user: req.user._id,
     name: req.body.name,
     author: req.body.author,
