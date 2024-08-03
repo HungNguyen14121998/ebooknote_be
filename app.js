@@ -8,7 +8,7 @@ const AppError = require("./utils/appError");
 ///
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri =
-  "mongodb+srv://hhnguyenit:cEXYWtJvQMbAwPF8@cluster0.toedfzq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://hhnguyenit:CDTH16a0306161051@cluster0.toedfzq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 ///
 
 var app = express();
