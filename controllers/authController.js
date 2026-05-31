@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const User = require("./../models/userModel");
-const catchAsync = require("./../utils/catchAsync");
+const catchAsync = require("./../utils/catchAsync").default;
 const AppError = require("./../utils/appError");
 
 const signToken = (id) => {
@@ -60,6 +60,10 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   createAndSendToken(user, 200, res);
+});
+
+exports.autoLogin = catchAsync(async (req, res, next) => {
+  createAndSendToken(req.user, 200, res);
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
