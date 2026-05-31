@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const User = require("./../models/userModel");
-const catchAsync = require("./../utils/catchAsync").default;
+const catchAsync = require("../utils/catchAsync");
 const AppError = require("./../utils/appError");
 
 const signToken = (id) => {
@@ -78,7 +78,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (!token) {
     return next(
-      new AppError("You are not logged in! Please log in to get access.", 401)
+      new AppError("You are not logged in! Please log in to get access.", 401),
     );
   }
 
@@ -90,7 +90,10 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (!currentUser) {
     return next(
-      new AppError("The user belonging ot this token does no longer exist", 401)
+      new AppError(
+        "The user belonging ot this token does no longer exist",
+        401,
+      ),
     );
   }
 
